@@ -1,6 +1,6 @@
 {
   "name": "@atom/babel7-transpiler",
-  "version": "1.0.0-0",
+  "version": "1.0.0-1",
   "description": "A transpiler for Atom packages that processes code with Babel 7",
   "main": "lib/index.js",
   "repository": {
