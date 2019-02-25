@@ -1,6 +1,6 @@
-# atom-babel6-transpiler
+# atom-babel7-transpiler
 
-This project implements an [Atom package transpiler]() that transpiles your package's files with Babel 6.
+This project implements an Atom package transpiler that transpiles your package's files with Babel 7.
 
 ## Usage
 
@@ -12,9 +12,9 @@ In detail:
 
 **1.** First, install the package from the npm registry:
 
-    npm install --save atom-babel6-transpiler
+    npm install --save @atom/babel7-transpiler
 
-**2.** Next, modify your `package.json` to include a reference to the transpiler for any files you want Babel to process as described [in the Atom Flight Manual](). For example, to process every file ending in `.js` in your package, you could use:
+**2.** Next, modify your `package.json` to include a reference to the transpiler for any files you want Babel to process as described in the Atom Flight Manual. For example, to process every file ending in `.js` in your package, you could use:
 
 ```javascript
 {
@@ -22,7 +22,7 @@ In detail:
   "atomTranspilers": [
     {
       "glob": "**/*.js",
-      "transpiler": "atom-babel6-transpiler"
+      "transpiler": "@atom/babel7-transpiler"
     }
   ]
 }
@@ -30,17 +30,17 @@ In detail:
 
 **3.** Finally, install Babel and all the presets and plugins you want to use as normal. For a simple example, if you wanted to use the ES2015 and React presets, you might run:
 
-    npm install --save babel-preset-es2015 babel-preset-react
+    npm install --save babel-preset-env babel-preset-react
 
 and then create a [`.babelrc` file](http://babeljs.io/docs/usage/babelrc/) to configure Babel to use them:
 
 ```json
 {
-  "presets": ["es2015", "react"]
+  "presets": ["env", "react"]
 }
 ```
 
-You may also specify options in your `package.json` inside the optional `options` object; the subkey `babel`, if it exists, will be passed [as options to `babel.transform`](http://babeljs.io/docs/usage/api/#babeltransformcode-optionsdocsusageoptions). Note that if you don't want Babel to search up the directory hierarchy for a `.babelrc` file, you need to add the `"babelrc": false` option to the settings. Otherwise Babel may mistakenly use a user's `.babelrc` from elsewhere on the filesystem when trying to build your package.
+You may also specify options in your `package.json` inside the optional `options` object; the subkey `babel`, if it exists, will be passed [as options to `babel.transformSync`](https://babeljs.io/docs/en/babel-core#transformsync). Note that if you don't want Babel to search up the directory hierarchy for a `.babelrc` file, you need to add the `"babelrc": false` option to the settings. Otherwise Babel may mistakenly use a user's `.babelrc` from elsewhere on the filesystem when trying to build your package.
 
 ```javascript
 {
@@ -48,7 +48,7 @@ You may also specify options in your `package.json` inside the optional `options
   "atomTranspilers": [
     {
       "glob": "**/*.js",
-      "transpiler": "atom-babel6-transpiler",
+      "transpiler": "@atom/babel7-transpiler",
       "options": {
         "babel": {
           "presets": ["es2015", "react"],
